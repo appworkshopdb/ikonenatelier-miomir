@@ -109,7 +109,7 @@ function doPost(e) {
     return antwort(true, 'Vielen Dank für Ihre Anfrage.');
   } catch (err) {
     console.error(err);
-    return antwort(false, 'Ihre Anfrage konnte gerade nicht gesendet werden. Bitte versuchen Sie es in einigen Minuten erneut.');
+    return antwort(false, 'Ihre Anfrage konnte gerade nicht gesendet werden. Bitte versuchen Sie es in einigen Minuten erneut oder schreiben Sie direkt an ikonenateliermiomir@gmail.com.');
   }
 }
 
