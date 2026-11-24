@@ -204,12 +204,18 @@ form.offer{background:#fffaf2;border:1px solid var(--line);border-radius:var(--r
 .field.full{grid-column:1/-1}
 .field label,.field legend{font-weight:600;font-size:.95rem}
 .field .hint{font-size:.85rem;color:var(--ink-soft);margin:0}
-.field input[type=text],.field input[type=email],.field input[type=tel],.field select,.field textarea{font:inherit;font-size:1rem;padding:12px 14px;border:1px solid #cdbfa8;border-radius:var(--radius);background:#fff;color:var(--ink);width:100%}
+.field input[type=text],.field input[type=email],.field input[type=tel],.field input[type=number],.field select,.field textarea{font:inherit;font-size:1rem;padding:12px 14px;border:1px solid #cdbfa8;border-radius:var(--radius);background:#fff;color:var(--ink);width:100%}
 .field textarea{min-height:140px;resize:vertical}
 .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(184,144,58,.25)}
 .field .error{color:var(--cinnabar);font-size:.85rem;display:none}
 .field.invalid input,.field.invalid select{border-color:var(--cinnabar)}
 .field.invalid .error{display:block}
+.field[hidden]{display:none}
+.field .field-title{font-weight:600;font-size:.95rem}
+.masse-row{display:flex;align-items:flex-end;gap:12px}
+.masse-row label{display:flex;flex-direction:column;gap:6px;font-size:.9rem;color:var(--ink-soft);flex:0 1 170px}
+.masse-x{padding-bottom:12px;font-size:1.2rem;color:var(--ink-soft)}
+.field.invalid .masse-row input[aria-invalid="false"]{border-color:#cdbfa8}
 fieldset.field{border:0;padding:0;margin:0}
 .types{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 .types label{display:flex;gap:10px;align-items:center;padding:14px;border:1px solid #cdbfa8;border-radius:var(--radius);background:#fff;cursor:pointer;font-weight:400}

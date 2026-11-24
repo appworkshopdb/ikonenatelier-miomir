@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=20261124">
+<link rel="stylesheet" href="style.css?v=20261124b">
 </head>
 <body>
 
@@ -286,8 +286,18 @@
             <option>40 × 30 cm</option>
             <option>30 × 20 cm</option>
             <option>Kleinikone auf Stein</option>
-            <option>Eigenes Format (10 × 10 cm bis 2 × 2 m – Maße bitte in der Notiz)</option>
+            <option value="Eigenes Format">Eigenes Format (Maße selbst angeben)</option>
           </select>
+        </div>
+        <div class="field full" id="masseField" hidden>
+          <span class="field-title" id="masseTitle">Ihre Maße</span>
+          <p class="hint" id="masseHint">Breite und Höhe in cm, jeweils von 10 bis 200 cm in 10-cm-Schritten – z. B. 60 × 80 cm.</p>
+          <div class="masse-row" role="group" aria-labelledby="masseTitle" aria-describedby="masseHint">
+            <label>Breite in cm<input id="breite" name="breite" type="number" inputmode="numeric" min="10" max="200" step="10" placeholder="60"></label>
+            <span class="masse-x" aria-hidden="true">×</span>
+            <label>Höhe in cm<input id="hoehe" name="hoehe" type="number" inputmode="numeric" min="10" max="200" step="10" placeholder="80"></label>
+          </div>
+          <span class="error">Bitte Breite und Höhe angeben – jeweils 10 bis 200 cm in 10-cm-Schritten (10, 20, 30 … 200).</span>
         </div>
         <div class="field full">
           <label for="motiv">Welche Ikone wünschen Sie sich?</label>
@@ -386,8 +396,16 @@
   // Galerie-Filter
   // Vorbelegung aus den Format-Karten
   const formatSel = document.getElementById('format');
+  const masseField = document.getElementById('masseField');
+  const breiteEl = document.getElementById('breite'), hoeheEl = document.getElementById('hoehe');
+  const eigenesFormat = () => formatSel.value === 'Eigenes Format';
+  formatSel.addEventListener('change', () => {
+    masseField.hidden = !eigenesFormat();
+    if (masseField.hidden) masseField.classList.remove('invalid');
+  });
   document.querySelectorAll('[data-format]').forEach(a => a.addEventListener('click', () => {
     formatSel.value = a.dataset.format;
+    formatSel.dispatchEvent(new Event('change'));
     document.querySelector(`input[name=art][value="${a.dataset.format === 'Kleinikone auf Stein' ? 'Kleinikone auf Stein' : 'Ikone auf MDF-Tafel'}"]`).checked = true;
   }));
 
@@ -405,6 +423,21 @@
     el.setAttribute('aria-invalid', !ok);
     return ok;
   }
+  // Eigenes Format: Breite und Höhe je 10–200 cm in 10-cm-Schritten
+  const masOk = el => { const v = el.value.trim(); return /^\d+$/.test(v) && +v >= 10 && +v <= 200 && +v % 10 === 0; };
+  function validateMasse(){
+    if (!eigenesFormat()) return true;
+    const ok = masOk(breiteEl) && masOk(hoeheEl);
+    masseField.classList.toggle('invalid', !ok);
+    breiteEl.setAttribute('aria-invalid', !masOk(breiteEl));
+    hoeheEl.setAttribute('aria-invalid', !masOk(hoeheEl));
+    return ok;
+  }
+  [breiteEl, hoeheEl].forEach(el => {
+    el.addEventListener('blur', () => { if (breiteEl.value && hoeheEl.value || masseField.classList.contains('invalid')) validateMasse(); });
+    el.addEventListener('input', () => { if (masseField.classList.contains('invalid')) validateMasse(); });
+  });
+
   Object.keys(checks).forEach(id => {
     const el = document.getElementById(id);
     el.addEventListener('blur', () => validate(id));
@@ -423,6 +456,7 @@
     e.preventDefault();
     errorBox.classList.remove('show');
     const results = Object.keys(checks).map(validate);
+    results.push(validateMasse());
     if (results.includes(false)) { form.querySelector('.invalid input').focus(); return; }
 
     if (!DEMO_MODE) {
@@ -432,6 +466,8 @@
       try {
         // Als einfaches Formular-POST senden (kein CORS-Vorabtest nötig, so nimmt Google Apps Script es an)
         const data = new URLSearchParams(new FormData(form));
+        if (eigenesFormat()) data.set('format', `Eigenes Format: ${breiteEl.value.trim()} × ${hoeheEl.value.trim()} cm (Breite × Höhe)`);
+        data.delete('breite'); data.delete('hoehe');
         const res = await fetch(FORM_ENDPOINT, { method: 'POST', body: data });
         let json = {};
         try { json = await res.json(); } catch {}

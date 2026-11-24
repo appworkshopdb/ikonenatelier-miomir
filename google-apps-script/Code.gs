@@ -54,6 +54,13 @@ function doPost(e) {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return antwort(false, 'Bitte geben Sie eine gültige E-Mail-Adresse an.');
     if (motiv.length < 2) return antwort(false, 'Bitte nennen Sie die gewünschte Ikone oder den Heiligen.');
     if (!p.datenschutz) return antwort(false, 'Bitte bestätigen Sie die Datenschutzhinweise.');
+    if (/^Eigenes Format/.test(format)) {
+      const m = format.match(/^Eigenes Format: (\d+) × (\d+) cm/);
+      const ok = function (v) { v = Number(v); return v >= 10 && v <= 200 && v % 10 === 0; };
+      if (!m || !ok(m[1]) || !ok(m[2])) {
+        return antwort(false, 'Bitte geben Sie Breite und Höhe jeweils von 10 bis 200 cm in 10-cm-Schritten an.');
+      }
+    }
 
     if (!zaehlerOk()) {
       return antwort(false, 'Gerade gehen sehr viele Anfragen ein. Bitte versuchen Sie es in einigen Minuten noch einmal.');
