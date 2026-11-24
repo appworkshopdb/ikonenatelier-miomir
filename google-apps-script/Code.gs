@@ -74,7 +74,7 @@ function doPost(e) {
       '',
       'Name:       ' + name,
       'E-Mail:     ' + email,
-      'Telefon:    ' + (telefon || '–'),
+      'Telefon:    ' + (telefon || 'nicht angegeben'),
       '',
       'Notiz:',
       notiz || '–',
@@ -88,7 +88,8 @@ function doPost(e) {
       replyTo: email,
       name: 'Ikonenatelier Miomir – Webseite',
       subject: 'Neue Anfrage: ' + motiv + ' – ' + name,
-      body: body
+      body: body,
+      htmlBody: anfrageHtml({ datum: datum, motiv: motiv, art: art, format: format, name: name, email: email, telefon: telefon, notiz: notiz })
     });
 
     if (TABELLE_ID) {
@@ -128,7 +129,99 @@ function testMail() {
   });
 }
 
+// Im Editor ausführen: schickt eine Beispiel-Anfrage im neuen Design ans eigene Postfach.
+function testAnfrageMail() {
+  const d = {
+    datum: Utilities.formatDate(new Date(), 'Europe/Berlin', 'dd.MM.yyyy, HH:mm'),
+    motiv: 'Hl. Nikolaus (Beispiel)', art: 'Ikone auf MDF-Tafel', format: '40 × 30 cm',
+    name: 'Maria Beispiel', email: 'maria@example.com', telefon: '',
+    notiz: 'Zur Taufe unseres Sohnes im März.\nGern mit Goldhintergrund.'
+  };
+  MailApp.sendEmail({
+    to: EMPFAENGER || Session.getEffectiveUser().getEmail(),
+    replyTo: d.email,
+    name: 'Ikonenatelier Miomir – Webseite',
+    subject: 'Neue Anfrage: ' + d.motiv + ' – ' + d.name,
+    body: 'Beispiel-Anfrage im neuen Design (HTML).',
+    htmlBody: anfrageHtml(d)
+  });
+}
+
+// ── Gestaltete Anfrage-Mail (HTML) ───────────────────────────────────────────
+// Tabellen und Stile direkt am Element, damit Gmail auf PC und Handy alles richtig anzeigt.
+
+function anfrageHtml(d) {
+  const nacht = '#16202b', gold = '#b8903a', goldHell = '#d9b86a', papier = '#fffaf2',
+        linie = '#e6dccb', grau = '#5b4f44', zinnober = '#9c2f22', tinte = '#221b15';
+  const serif = 'Georgia,\'Times New Roman\',serif', sans = 'Arial,Helvetica,sans-serif';
+  const vorname = d.name.split(/\s+/)[0];
+
+  const antwortLink = 'mailto:' + encodeURIComponent(d.email) +
+    '?subject=' + encodeURIComponent('Ihr Angebot: ' + d.motiv) +
+    '&body=' + encodeURIComponent('Guten Tag ' + d.name + ',\n\nvielen Dank für Ihre Anfrage zur Ikone „' + d.motiv + '“.\n\n');
+
+  function zeile(label, wert, letzte) {
+    const rand = 'border-top:1px solid ' + linie + ';' + (letzte ? 'border-bottom:1px solid ' + linie + ';' : '');
+    return '<tr>' +
+      '<td style="padding:9px 0;width:110px;color:' + grau + ';vertical-align:top;' + rand + '">' + label + '</td>' +
+      '<td style="padding:9px 0;color:' + tinte + ';' + rand + '">' + wert + '</td></tr>';
+  }
+
+  const zeilen = [
+    ['Art', esc(d.art)],
+    ['Format', esc(d.format || 'noch unsicher – bitte beraten')],
+    ['Name', esc(d.name)],
+    ['E-Mail', '<a href="mailto:' + esc(d.email) + '" style="color:' + zinnober + ';text-decoration:none">' + esc(d.email) + '</a>'],
+    ['Telefon', d.telefon
+      ? '<a href="tel:' + esc(d.telefon.replace(/[^\d+]/g, '')) + '" style="color:' + tinte + ';text-decoration:none">' + esc(d.telefon) + '</a>'
+      : '<span style="color:' + grau + '">nicht angegeben</span>']
+  ];
+
+  return '<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0;padding:0;background:#f1ece3">' +
+    '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f1ece3"><tr><td align="center" style="padding:24px 12px">' +
+    '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:' + papier + ';border:1px solid #d8cbb6;border-radius:6px;border-collapse:separate;overflow:hidden">' +
+
+    // Kopf
+    '<tr><td style="background:' + nacht + ';padding:18px 24px">' +
+      '<table role="presentation" cellpadding="0" cellspacing="0"><tr>' +
+        '<td style="width:34px;height:34px;border:1px solid ' + gold + ';border-radius:50%;text-align:center;vertical-align:middle;font-family:' + serif + ';font-size:17px;color:' + goldHell + '">M</td>' +
+        '<td style="padding-left:12px">' +
+          '<div style="font-family:' + serif + ';font-size:17px;color:#f1e8d8">Ikonenatelier Miomir</div>' +
+          '<div style="font-family:' + sans + ';font-size:11px;letter-spacing:2px;color:' + goldHell + '">NEUE ANFRAGE</div>' +
+        '</td></tr></table>' +
+    '</td></tr>' +
+    '<tr><td style="height:3px;line-height:3px;font-size:0;background:' + gold + '">&nbsp;</td></tr>' +
+
+    // Inhalt
+    '<tr><td style="padding:22px 24px 8px">' +
+      '<div style="font-family:' + sans + ';font-size:12px;color:' + grau + '">' + esc(d.datum) + ' · über die Webseite</div>' +
+      '<div style="font-family:' + serif + ';font-size:24px;line-height:1.25;color:' + tinte + ';margin:6px 0 16px">' + esc(d.motiv) + '</div>' +
+      '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-family:' + sans + ';font-size:14px">' +
+        zeilen.map(function (z, i) { return zeile(z[0], z[1], i === zeilen.length - 1); }).join('') +
+      '</table>' +
+      '<div style="font-family:' + sans + ';font-size:12px;color:' + grau + ';margin:18px 0 6px">Notiz</div>' +
+      '<div style="background:#f6f0e6;padding:12px 14px;font-family:' + sans + ';font-size:14px;line-height:1.6;color:' + tinte + '">' +
+        (d.notiz ? esc(d.notiz).replace(/\r?\n/g, '<br>') : '<span style="color:' + grau + '">Keine Notiz</span>') +
+      '</div>' +
+      '<table role="presentation" cellpadding="0" cellspacing="0" style="margin:22px 0 10px"><tr>' +
+        '<td style="background:' + gold + ';border-radius:4px">' +
+          '<a href="' + esc(antwortLink) + '" style="display:inline-block;padding:11px 20px;font-family:' + sans + ';font-size:14px;color:#ffffff;text-decoration:none">' + esc(vorname) + ' antworten</a>' +
+        '</td></tr></table>' +
+    '</td></tr>' +
+
+    // Fuß
+    '<tr><td style="padding:14px 24px;border-top:1px solid ' + linie + ';font-family:' + sans + ';font-size:12px;line-height:1.5;color:' + grau + '">' +
+      '„Antworten“ in Gmail geht ebenfalls direkt an ' + esc(d.name) + '.' +
+    '</td></tr>' +
+    '</table></td></tr></table></body></html>';
+}
+
 // ── Hilfsfunktionen ──────────────────────────────────────────────────────────
+
+function esc(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
 
 function antwort(ok, nachricht) {
   return ContentService
