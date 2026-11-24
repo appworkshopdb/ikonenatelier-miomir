@@ -233,24 +233,22 @@
       <div class="center">
         <span class="eyebrow">Ikone anfragen</span>
         <h2>Ihr persönliches Angebot</h2>
-        <p class="lead">Schicken Sie Miomir ein Bild der Ikone, die Sie sich wünschen, und ein paar Worte dazu. Sie erhalten ein unverbindliches Angebot mit Preis und voraussichtlichem Fertigstellungstermin.</p>
+        <p class="lead">Nennen Sie Miomir die Ikone oder den Heiligen, den Sie sich wünschen, und schreiben Sie ein paar Worte dazu. Sie erhalten ein unverbindliches Angebot mit Preis und voraussichtlichem Fertigstellungstermin.</p>
       </div>
 
       <ol class="process">
-        <li><h3>Anfrage senden</h3><p>Wunschmotiv, Format und eine Bildvorlage über das Formular schicken.</p></li>
+        <li><h3>Anfrage senden</h3><p>Wunschmotiv und Format über das Formular schicken.</p></li>
         <li><h3>Persönliches Angebot</h3><p>Miomir prüft Ihre Anfrage und sendet Ihnen ein Angebot mit Preis und Zeitrahmen per E-Mail.</p></li>
         <li><h3>Ikone entsteht</h3><p>Nach Ihrer Zusage beginnt die Arbeit – Schritt für Schritt in traditioneller Technik.</p></li>
         <li><h3>Übergabe</h3><p>Die fertige Ikone wird sicher verpackt versendet oder persönlich übergeben.</p></li>
       </ol>
 
       <!--
-        VERSAND DER ANFRAGEN:
-        Standardmäßig gehen die Anfragen an anfrage.php (im selben Ordner). Das Skript schickt
-        sie mit den Bildern per E-Mail an Miomir – dort oben die beiden Adressen eintragen.
-        Ohne PHP-Hosting stattdessen im Skript unten FORM_ENDPOINT auf die Adresse eines
-        Formulardienstes setzen (z. B. https://formspree.io/f/xxxxxxx).
+        VERSAND DER ANFRAGEN: Das Formular schickt an eine Google-Apps-Script-Web-App, die die Anfrage
+        per Gmail an Miomir weiterleitet. Code und Anleitung: google-apps-script/Code.gs und README.md.
+        Die Adresse der Web-App steht unten im Skript bei FORM_ENDPOINT.
       -->
-      <form class="offer" id="offerForm" action="anfrage.php" method="post" enctype="multipart/form-data" novalidate>
+      <form class="offer" id="offerForm" method="post" novalidate>
         <!-- Spam-Schutz: für Menschen unsichtbar, Bots füllen es aus -->
         <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">
           <label for="website">Bitte leer lassen</label>
@@ -292,28 +290,19 @@
           </select>
         </div>
         <div class="field full">
-          <label for="motiv">Motiv</label>
-          <input id="motiv" name="motiv" type="text" placeholder="z. B. Hl. Nikolaus, Gottesmutter von Kasan, Namenspatron …">
-        </div>
-
-        <div class="field full">
-          <span style="font-weight:600;font-size:.95rem" id="uploadLabel">Bildvorlage</span>
-          <p class="hint">Ein Foto der Ikone, die Sie sich wünschen. JPG, PNG oder WEBP, bis zu 5 Bilder.</p>
-          <label class="dropzone" id="dropzone" aria-labelledby="uploadLabel">
-            <input id="bilder" name="bilder" type="file" accept="image/*" multiple>
-            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" style="color:var(--gold);margin:0 auto 8px;display:block"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg>
-            Bild hierher ziehen oder <strong>Datei auswählen</strong>
-          </label>
-          <div class="previews" id="previews"></div>
+          <label for="motiv">Welche Ikone wünschen Sie sich?</label>
+          <p class="hint" id="motivHint">Name des Heiligen oder der Ikone, z. B. Hl. Nikolaus, Gottesmutter von Kasan oder Ihr Namenspatron.</p>
+          <input id="motiv" name="motiv" type="text" aria-describedby="motivHint" required>
+          <span class="error">Bitte nennen Sie die gewünschte Ikone oder den Heiligen.</span>
         </div>
 
         <div class="field full">
           <label for="notiz">Ihre Notiz an Miomir</label>
-          <textarea id="notiz" name="notiz" placeholder="Anlass, Wunschtermin, besondere Wünsche zu Farben, Inschrift oder Hintergrund …"></textarea>
+          <textarea id="notiz" name="notiz" placeholder="Anlass, Wunschtermin, besondere Wünsche zu Farben, Inschrift oder Hintergrund – gern auch ein Link zu einem Vorbild …"></textarea>
         </div>
 
         <div class="field full" id="consentField">
-          <label class="consent"><input type="checkbox" id="consent" name="datenschutz" required> <span>Ich bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage gespeichert werden. Mehr dazu in der <a href="#">Datenschutzerklärung</a>.</span></label>
+          <label class="consent"><input type="checkbox" id="consent" name="datenschutz" required> <span>Ich bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage per E-Mail (Google Gmail) an Miomir übermittelt und gespeichert werden. Mehr dazu in der <a href="#">Datenschutzerklärung</a>.</span></label>
           <span class="error">Bitte bestätigen Sie die Datenschutzhinweise.</span>
         </div>
 
@@ -328,12 +317,12 @@
       <div class="thanks" id="thanks" role="status" tabindex="-1">
         <div class="ornament" style="justify-content:center">✦</div>
         <h2>Vielen Dank für Ihre Anfrage</h2>
-        <p class="lead" style="margin:0 auto">Miomir sieht sich Ihre Vorlage an und schickt Ihnen ein persönliches Angebot mit Preis und Zeitrahmen an <strong id="thanksMail"></strong>.</p>
+        <p class="lead" style="margin:0 auto">Miomir sieht sich Ihre Anfrage an und schickt Ihnen ein persönliches Angebot mit Preis und Zeitrahmen an <strong id="thanksMail"></strong>.</p>
       </div>
 
       <div class="faq">
         <details><summary>Wie lange dauert es, bis meine Ikone fertig ist?</summary><p>Das hängt von Format, Motiv und Vergoldung ab. Eine Ikone entsteht in vielen Schichten, die jeweils trocknen müssen. Den voraussichtlichen Fertigstellungstermin nennt Miomir Ihnen im Angebot.</p></details>
-        <details><summary>Kann ich eine Ikone nach einer eigenen Vorlage bestellen?</summary><p>Ja. Schicken Sie einfach ein Foto der gewünschten Ikone mit. Miomir malt sie in seiner Handschrift und in traditioneller Technik – kein Druck, keine Kopie, sondern ein Original.</p></details>
+        <details><summary>Kann ich eine Ikone nach einer eigenen Vorlage bestellen?</summary><p>Ja. Nennen Sie im Formular die gewünschte Ikone – ein Foto Ihrer Vorlage können Sie Miomir gern per E-Mail schicken, sobald er sich bei Ihnen meldet. Er malt sie in seiner Handschrift und in traditioneller Technik – kein Druck, keine Kopie, sondern ein Original.</p></details>
         <details><summary>Auf welchem Untergrund wird gemalt?</summary><p>Auf geschliffenen MDF-Platten, grundiert mit Gesso. Sie sind formstabil, verziehen sich nicht und reißen nicht – so bleibt die Malschicht auch bei großen Ikonen dauerhaft erhalten. Kleinikonen malt Miomir auch auf echten Natursteinen.</p></details>
         <details><summary>Ist das Gold echt?</summary><p>Ja. Für Nimben, Hintergründe und Ornamente verwendet Miomir echtes Blattgold mit 22 oder 24 Karat – kein Schlagmetall und keine Goldfarbe.</p></details>
         <details><summary>Kann die Ikone geweiht werden?</summary><p>Viele Kunden lassen ihre Ikone in ihrer Kirche segnen. Sprechen Sie Ihren Wunsch gern in der Anfrage an.</p></details>
@@ -376,15 +365,10 @@
 
 <script>
   // ── Versand-Einstellungen ──────────────────────────────────────────────
-  // Wohin die Anfrage geschickt wird. 'anfrage.php' = eigenes PHP-Skript beim Webhoster.
-  // Ohne PHP: Adresse eines Formulardienstes eintragen, z. B. 'https://formspree.io/f/xxxxxxx'.
-  const FORM_ENDPOINT = 'anfrage.php';
-  // Wird die Seite direkt als Datei geöffnet (Doppelklick) oder als Vorschau auf GitHub Pages
-  // gezeigt, gibt es kein PHP – dann zeigt das Formular nur die Bestätigung an, ohne etwas zu verschicken.
-  const DEMO_MODE = location.protocol === 'file:' || location.hostname.endsWith('github.io');
-  // Fotos werden vor dem Senden verkleinert (längste Seite in Pixeln), damit auch
-  // große Handyfotos zuverlässig ankommen.
-  const MAX_BILD_PIXEL = 2000;
+  // Adresse der Google-Apps-Script-Web-App (endet auf /exec). Anleitung: README.md
+  const FORM_ENDPOINT = '';
+  // Solange keine Adresse eingetragen ist, zeigt das Formular nur die Bestätigung an, ohne etwas zu verschicken.
+  const DEMO_MODE = !FORM_ENDPOINT;
 
   document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -407,34 +391,12 @@
     document.querySelector(`input[name=art][value="${a.dataset.format === 'Kleinikone auf Stein' ? 'Kleinikone auf Stein' : 'Ikone auf MDF-Tafel'}"]`).checked = true;
   }));
 
-  // Bild-Upload mit Vorschau
-  const input = document.getElementById('bilder'), drop = document.getElementById('dropzone'), previews = document.getElementById('previews');
-  let files = [];
-  function render(){
-    previews.innerHTML = '';
-    files.forEach((f, i) => {
-      const fig = document.createElement('figure');
-      const img = document.createElement('img'); img.src = URL.createObjectURL(f); img.alt = 'Vorschau ' + f.name;
-      const cap = document.createElement('figcaption'); cap.textContent = f.name;
-      const rm = document.createElement('button'); rm.type = 'button'; rm.textContent = '×'; rm.setAttribute('aria-label', f.name + ' entfernen');
-      rm.onclick = () => { files.splice(i, 1); render(); };
-      fig.append(img, cap, rm); previews.append(fig);
-    });
-  }
-  function addFiles(list){
-    [...list].filter(f => f.type.startsWith('image/')).forEach(f => { if (files.length < 5) files.push(f); });
-    render();
-  }
-  input.addEventListener('change', () => { addFiles(input.files); input.value = ''; });
-  ['dragenter','dragover'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('drag'); }));
-  ['dragleave','drop'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove('drag'); }));
-  drop.addEventListener('drop', e => addFiles(e.dataTransfer.files));
-
   // Validierung (beim Verlassen eines Feldes und beim Absenden)
   const form = document.getElementById('offerForm');
   const checks = {
     name: el => el.value.trim().length > 1,
     email: el => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim()),
+    motiv: el => el.value.trim().length > 1,
     consent: el => el.checked
   };
   function validate(id){
@@ -449,23 +411,6 @@
     el.addEventListener('input', () => { if (el.closest('.field').classList.contains('invalid')) validate(id); });
     el.addEventListener('change', () => validate(id));
   });
-
-  // Großes Foto verkleinern und als JPEG neu speichern; bei Problemen das Original senden
-  async function verkleinern(file){
-    try {
-      const bmp = await createImageBitmap(file);
-      const scale = Math.min(1, MAX_BILD_PIXEL / Math.max(bmp.width, bmp.height));
-      if (scale === 1 && file.size < 1.5 * 1024 * 1024) return file;
-      const c = document.createElement('canvas');
-      c.width = Math.round(bmp.width * scale); c.height = Math.round(bmp.height * scale);
-      const ctx = c.getContext('2d');
-      ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, c.width, c.height);
-      ctx.drawImage(bmp, 0, 0, c.width, c.height);
-      const blob = await new Promise(r => c.toBlob(r, 'image/jpeg', 0.86));
-      if (!blob) return file;
-      return new File([blob], file.name.replace(/\.[^.]+$/, '') + '.jpg', { type: 'image/jpeg' });
-    } catch { return file; }
-  }
 
   const errorBox = document.getElementById('formError');
   const submitBtn = document.getElementById('submitBtn');
@@ -485,14 +430,12 @@
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<span class="spinner" aria-hidden="true"></span> Wird gesendet …';
       try {
-        const data = new FormData(form);
-        data.delete('bilder');
-        const bilder = await Promise.all(files.map(verkleinern));
-        bilder.forEach(f => data.append('bilder[]', f, f.name));
-        const res = await fetch(FORM_ENDPOINT, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+        // Als einfaches Formular-POST senden (kein CORS-Vorabtest nötig, so nimmt Google Apps Script es an)
+        const data = new URLSearchParams(new FormData(form));
+        const res = await fetch(FORM_ENDPOINT, { method: 'POST', body: data });
         let json = {};
         try { json = await res.json(); } catch {}
-        if (!res.ok || json.ok === false) {
+        if (!res.ok || json.ok !== true) {
           throw new Error(json.nachricht || 'Ihre Anfrage konnte gerade nicht gesendet werden. Bitte versuchen Sie es in einigen Minuten erneut oder schreiben Sie uns direkt eine E-Mail.');
         }
       } catch (err) {

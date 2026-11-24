@@ -106,17 +106,6 @@ nav.main .btn{padding:10px 18px;font-size:.92rem;opacity:1}
 .work figcaption b{display:block;font:600 1.2rem/1.25 var(--serif)}
 .work figcaption span{font-size:.86rem;color:var(--ink-soft)}
 .work.hidden{display:none}
-.more-works{margin-top:56px;border-top:1px solid var(--line);padding-top:40px}
-.more-works.alone{margin-top:0;border-top:0;padding-top:0}
-.more-works h3{font-size:1.7rem;text-align:center;margin-bottom:.2em}
-.more-note{text-align:center;color:var(--ink-soft);margin:0 auto 28px;max-width:60ch}
-.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px}
-.work.tile{margin:0}
-.work.tile img{aspect-ratio:1/1;object-fit:cover}
-.work.tile figcaption{padding:10px 12px 12px}
-.work.tile figcaption b{font-size:1.02rem}
-.work.tile figcaption span{display:block;font-size:.8rem;line-height:1.35}
-@media (max-width:520px){.tiles{grid-template-columns:repeat(2,1fr);gap:12px}}
 
 /* Lightbox */
 .lightbox{position:fixed;inset:0;background:rgba(12,14,18,.92);display:none;align-items:center;justify-content:center;z-index:100;padding:24px}
@@ -227,15 +216,6 @@ fieldset.field{border:0;padding:0;margin:0}
 .types label:has(input:checked){border-color:var(--gold);background:#fbf3e2;box-shadow:0 0 0 1px var(--gold)}
 .types input{accent-color:var(--cinnabar)}
 @media (max-width:560px){.types{grid-template-columns:1fr}}
-.dropzone{border:1.5px dashed #c3b296;border-radius:var(--radius);background:#fff;padding:28px;text-align:center;cursor:pointer;transition:background .2s,border-color .2s}
-.dropzone.drag{background:#fbf3e2;border-color:var(--gold)}
-.dropzone strong{color:var(--cinnabar)}
-.dropzone input{position:absolute;width:1px;height:1px;opacity:0}
-.previews{display:flex;flex-wrap:wrap;gap:12px;margin-top:4px}
-.previews figure{margin:0;position:relative;width:96px}
-.previews img{width:96px;height:96px;object-fit:cover;border-radius:var(--radius);border:1px solid var(--line)}
-.previews figcaption{font-size:.72rem;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.previews button{position:absolute;top:-8px;right:-8px;width:26px;height:26px;border-radius:50%;border:0;background:var(--ink);color:#fff;cursor:pointer;font-size:.9rem;line-height:1}
 .consent{display:flex;gap:10px;align-items:flex-start;font-size:.92rem;color:var(--ink-soft)}
 .consent input{margin-top:5px;accent-color:var(--cinnabar)}
 .form-actions{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
