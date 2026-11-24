@@ -117,6 +117,17 @@
   .work figcaption b{display:block;font:600 1.2rem/1.25 var(--serif)}
   .work figcaption span{font-size:.86rem;color:var(--ink-soft)}
   .work.hidden{display:none}
+  .more-works{margin-top:56px;border-top:1px solid var(--line);padding-top:40px}
+  .more-works.alone{margin-top:0;border-top:0;padding-top:0}
+  .more-works h3{font-size:1.7rem;text-align:center;margin-bottom:.2em}
+  .more-note{text-align:center;color:var(--ink-soft);margin:0 auto 28px;max-width:60ch}
+  .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px}
+  .work.tile{margin:0}
+  .work.tile img{aspect-ratio:1/1;object-fit:cover}
+  .work.tile figcaption{padding:10px 12px 12px}
+  .work.tile figcaption b{font-size:1.02rem}
+  .work.tile figcaption span{display:block;font-size:.8rem;line-height:1.35}
+  @media (max-width:520px){.tiles{grid-template-columns:repeat(2,1fr);gap:12px}}
 
   /* Lightbox */
   .lightbox{position:fixed;inset:0;background:rgba(12,14,18,.92);display:none;align-items:center;justify-content:center;z-index:100;padding:24px}
@@ -173,6 +184,12 @@
   .artist-photo img{border-radius:2px;filter:saturate(.92)}
   .artist-photo::before{content:"";position:absolute;inset:-14px 14px 14px -14px;border:1px solid var(--gold);z-index:-1}
   .artist-photo{isolation:isolate}
+  .artist-photo img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;object-position:center 70%}
+  .artist-grid{align-items:start}
+  .artist-more{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+  .artist-more figure{margin:0}
+  .artist-more img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:2px}
+  .artist-more figcaption{font-size:.85rem;color:var(--ink-soft);margin-top:6px;line-height:1.4}
   .signature{font:italic 500 1.8rem/1 var(--serif);color:var(--cinnabar);margin-top:8px}
   .hilandar{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;margin-top:56px;padding:28px;background:#fffaf2;border:1px solid var(--line);border-radius:var(--radius)}
   .hilandar img{width:220px;border-radius:2px}
@@ -317,6 +334,7 @@
 
       <div class="filters" role="group" aria-label="Galerie filtern">
         <button type="button" data-filter="alle" aria-pressed="true">Alle Werke</button>
+        <button type="button" data-filter="christus" aria-pressed="false">Christus</button>
         <button type="button" data-filter="gottesmutter" aria-pressed="false">Gottesmutter</button>
         <button type="button" data-filter="heilige" aria-pressed="false">Heilige &amp; Engel</button>
         <button type="button" data-filter="feste" aria-pressed="false">Festtagsikonen</button>
@@ -326,7 +344,7 @@
       <div class="gallery">
         <figure class="work" data-cat="gottesmutter"><button type="button"><span class="crop-g" style="display:block"><img src="bilder/gorgoepikoos.png" alt="Ikone der Gottesmutter Gorgoepikoos mit Christuskind" loading="lazy"></span></button>
           <figcaption><b>Gottesmutter Gorgoepikoos</b><span>Eitempera und Blattgold auf MDF-Tafel</span></figcaption></figure>
-        <figure class="work" data-cat="feste"><button type="button"><img src="bilder/christi-geburt.webp" alt="Festtagsikone der Geburt Christi mit Engeln, Hirten und Gottesmutter" loading="lazy"></button>
+        <figure class="work" data-cat="feste"><button type="button"><img src="bilder/christi-geburt.jpg" alt="Festtagsikone der Geburt Christi mit Engeln, Hirten und Gottesmutter" loading="lazy"></button>
           <figcaption><b>Geburt Christi</b><span>Festtagsikone, Eitempera auf MDF-Tafel</span></figcaption></figure>
         <figure class="work" data-cat="heilige"><button type="button"><img src="bilder/hl-georg.png" alt="Ikone des heiligen Georg mit Lanze auf rotem Grund" loading="lazy"></button>
           <figcaption><b>Hl. Georg</b><span>Eitempera auf MDF-Tafel, vertiefte Malfläche</span></figcaption></figure>
@@ -336,6 +354,8 @@
           <figcaption><b>Hl. Georg mit dem Drachen</b><span>Eitempera auf MDF-Tafel, vertiefte Malfläche</span></figcaption></figure>
         <figure class="work" data-cat="heilige"><button type="button"><img src="bilder/hl-georg-drache-rot.jpg" alt="Ikone des heiligen Georg auf weißem Pferd im Kampf mit dem Drachen, roter Grund" loading="lazy"></button>
           <figcaption><b>Hl. Georg mit dem Drachen</b><span>Eitempera und Blattgold auf MDF-Tafel</span></figcaption></figure>
+        <figure class="work" data-cat="heilige"><button type="button"><img src="bilder/hl-georg-wundertaeter.jpg" alt="Ikone des heiligen Großmärtyrers Georg des Wundertäters auf weißem Pferd mit dem Drachen" loading="lazy"></button>
+          <figcaption><b>Hl. Großmärtyrer Georg der Wundertäter</b><span>Eitempera und Blattgold auf MDF-Tafel</span></figcaption></figure>
         <figure class="work" data-cat="heilige"><button type="button"><img src="bilder/hl-simeon.png" alt="Großformatige Ikone des heiligen Simeon, daneben der Künstler mit der Ikone" loading="lazy"></button>
           <figcaption><b>Hl. Simeon</b><span>Großformat, Eitempera und Blattgold</span></figcaption></figure>
         <figure class="work" data-cat="feste"><button type="button"><img src="bilder/auferstehung.webp" alt="Festtagsikone der Auferstehung Christi auf goldenem Grund" loading="lazy"></button>
@@ -350,6 +370,67 @@
           <figcaption><b>Serie kleiner Hausikonen</b><span>Gottesmutter, hl. Nikolaus, hl. Hildegard, Schutzengel</span></figcaption></figure>
         <figure class="work" data-cat="stein gottesmutter"><button type="button"><img src="bilder/kleinikone-stein.png" alt="Kleine Ikone der Gottesmutter auf einem Flussstein" loading="lazy"></button>
           <figcaption><b>Kleinikone auf Flussstein</b><span>Gottesmutter, Eitempera auf Stein</span></figcaption></figure>
+      </div>
+
+      <div class="more-works">
+        <h3>Weitere Ikonen aus der Werkstatt</h3>
+        <p class="more-note">Eine Auswahl weiterer Arbeiten – von Christus- und Gottesmutterikonen bis zu Namenspatronen.</p>
+        <div class="tiles">
+          <figure class="work tile" data-cat="christus"><button type="button"><img src="bilder/klein/christus-pantokrator.jpg" alt="Ikone Christus Pantokrator mit Evangelienbuch" width="206" height="206" loading="lazy"></button>
+            <figcaption><b>Christus Pantokrator</b><span>mit dem Evangelienbuch</span></figcaption></figure>
+          <figure class="work tile" data-cat="christus gottesmutter heilige"><button type="button"><img src="bilder/klein/mehrfeldikone-mandylion.jpg" alt="Mehrfeldikone mit dem Mandylion in der Mitte, umgeben von Gottesmutter, Johannes dem Täufer, zwei Erzengeln und zwei Heiligen" width="206" height="206" loading="lazy"></button>
+            <figcaption><b>Mehrfeldikone mit dem Mandylion</b><span>Gottesmutter, Johannes, Erzengel, Heilige</span></figcaption></figure>
+          <figure class="work tile" data-cat="christus"><button type="button"><img src="bilder/klein/christus-pantokrator-klein.jpg" alt="Kleine Ikone Christus Pantokrator" width="206" height="206" loading="lazy"></button>
+            <figcaption><b>Christus Pantokrator</b><span>Kleinikone</span></figcaption></figure>
+          <figure class="work tile" data-cat="gottesmutter"><button type="button"><img src="bilder/klein/gottesmutter-mit-kind.jpg" alt="Ikone der Gottesmutter mit dem Christuskind" width="206" height="206" loading="lazy"></button>
+            <figcaption><b>Gottesmutter mit dem Christuskind</b></figcaption></figure>
+          <figure class="work tile" data-cat="gottesmutter"><button type="button"><img src="bilder/klein/gottesmutter-klein.jpg" alt="Kleine Ikone der Gottesmutter" width="206" height="206" loading="lazy"></button>
+            <figcaption><b>Gottesmutter</b><span>Kleinikone</span></figcaption></figure>
+          <figure class="work tile" data-cat="stein gottesmutter"><button type="button"><img src="bilder/klein/gottesmutter-stein-klein.jpg" alt="Kleine Ikone der Gottesmutter auf einem Stein, in der Hand gehalten" width="206" height="206" loading="lazy"></button>
+            <figcaption><b>Gottesmutter auf Stein</b><span>Kleinikone</span></figcaption></figure>
+          <figure class="work tile" data-cat="feste"><button type="button"><img src="bilder/klein/heilige-dreifaltigkeit.jpg" alt="Ikone der Heiligen Dreifaltigkeit mit drei Engeln am Tisch" width="206" height="206" loading="lazy"></button>
+            <figcaption><b>Heilige Dreifaltigkeit</b><span>die drei Engel bei Abraham</span></figcaption></figure>
+          <figure class="work tile" data-cat="heilige"><button type="button"><img src="bilder/klein/erzengel-michael-schwert.jpg" alt="Ikone des Erzengels Michael mit Schwert und Sphaira" width="206" height="206" loading="lazy"></button>
+            <figcaption><b>Erzengel Michael</b><span>mit Schwert und Sphaira</span></figcaption></figure>
+          <figure class="work tile" data-cat="heilige"><button type="button"><img src="bilder/klein/erzengel-gabriel.jpg" alt="Kleine Ikone des Erzengels Gabriel" width="206" height="206" loading="lazy"></button>
+            <figcaption><b>Erzengel Gabriel</b><span>Kleinikone</span></figcaption></figure>
+          <figure class="work tile" data-cat="heilige"><button type="button"><img src="bilder/klein/hl-johannes-taeufer.jpg" alt="Ikone des heiligen Johannes des Täufers mit Schriftrolle" width="206" height="206" loading="lazy"></button>
+            <figcaption><b>Hl. Johannes der Täufer</b><span>mit Schriftrolle</span></figcaption></figure>
+          <figure class="work tile" data-cat="heilige"><button type="button"><img src="bilder/klein/hl-sava.jpg" alt="Ikone des heiligen Sava im Bischofsgewand" width="206" height="206" loading="lazy"></button>
+            <figcaption><b>Hl. Sava</b><span>Mitgründer des Klosters Hilandar</span></figcaption></figure>
+          <figure class="work tile" data-cat="heilige"><button type="button"><img src="bilder/klein/hl-nikolaus-von-myra.jpg" alt="Ikone des heiligen Nikolaus von Myra im roten Gewand" width="206" height="206" loading="lazy"></button>
+            <figcaption><b>Hl. Nikolaus von Myra</b></figcaption></figure>
+          <figure class="work tile" data-cat="heilige"><button type="button"><img src="bilder/klein/hl-nikolaus-klein.jpg" alt="Kleine Ikone des heiligen Nikolaus" width="206" height="206" loading="lazy"></button>
+            <figcaption><b>Hl. Nikolaus</b><span>Kleinikone</span></figcaption></figure>
+          <figure class="work tile" data-cat="heilige"><button type="button"><img src="bilder/klein/hl-lukas-malt-gottesmutter.jpg" alt="Ikone des heiligen Evangelisten Lukas, der eine Ikone der Gottesmutter malt" width="206" height="206" loading="lazy"></button>
+            <figcaption><b>Hl. Lukas malt die Gottesmutter</b><span>der erste Ikonenmaler</span></figcaption></figure>
+          <figure class="work tile" data-cat="heilige"><button type="button"><img src="bilder/klein/hl-evangelist-lukas.jpg" alt="Ikone des heiligen Evangelisten Lukas mit Buch" width="206" height="206" loading="lazy"></button>
+            <figcaption><b>Hl. Evangelist Lukas</b></figcaption></figure>
+          <figure class="work tile" data-cat="heilige"><button type="button"><img src="bilder/klein/hl-joseph.jpg" alt="Ikone des heiligen Joseph mit dem Christuskind" width="206" height="206" loading="lazy"></button>
+            <figcaption><b>Hl. Joseph</b><span>mit dem Christuskind</span></figcaption></figure>
+          <figure class="work tile" data-cat="heilige"><button type="button"><img src="bilder/klein/hl-maria-magdalena.jpg" alt="Ikone der heiligen Maria Magdalena mit Kreuz und Salbgefäß" width="206" height="206" loading="lazy"></button>
+            <figcaption><b>Hl. Maria Magdalena</b><span>mit Kreuz und Salbgefäß</span></figcaption></figure>
+          <figure class="work tile" data-cat="heilige"><button type="button"><img src="bilder/klein/hl-kosmas-und-damian.jpg" alt="Ikone der heiligen Ärzte Kosmas und Damian" width="206" height="206" loading="lazy"></button>
+            <figcaption><b>Hl. Kosmas und Damian</b><span>die heiligen Ärzte</span></figcaption></figure>
+          <figure class="work tile" data-cat="heilige"><button type="button"><img src="bilder/klein/prophet-elias.jpg" alt="Kleine Ikone des Propheten Elias" width="206" height="206" loading="lazy"></button>
+            <figcaption><b>Hl. Prophet Elias</b><span>Kleinikone</span></figcaption></figure>
+          <figure class="work tile" data-cat="heilige"><button type="button"><img src="bilder/klein/hl-florian.jpg" alt="Ikone des heiligen Florian als Soldat, der ein brennendes Haus löscht" width="206" height="206" loading="lazy"></button>
+            <figcaption><b>Hl. Florian</b><span>Schutzpatron gegen Feuer</span></figcaption></figure>
+          <figure class="work tile" data-cat="heilige"><button type="button"><img src="bilder/klein/hl-demetrios-zu-pferd.jpg" alt="Ikone des heiligen Demetrios auf rotem Pferd" width="206" height="206" loading="lazy"></button>
+            <figcaption><b>Hl. Demetrios</b><span>zu Pferd</span></figcaption></figure>
+          <figure class="work tile" data-cat="heilige"><button type="button"><img src="bilder/klein/hl-georg-brustbild.jpg" alt="Ikone des heiligen Georg als Brustbild mit Lanze" width="206" height="206" loading="lazy"></button>
+            <figcaption><b>Hl. Georg</b><span>Brustbild mit Lanze</span></figcaption></figure>
+          <figure class="work tile" data-cat="heilige"><button type="button"><img src="bilder/klein/hl-georg-rot-2.jpg" alt="Ikone des heiligen Georg auf rotem Grund" width="206" height="206" loading="lazy"></button>
+            <figcaption><b>Hl. Georg</b><span>auf rotem Grund</span></figcaption></figure>
+          <figure class="work tile" data-cat="heilige"><button type="button"><img src="bilder/klein/hl-georg-drache-1.jpg" alt="Ikone des heiligen Georg zu Pferd im Kampf mit dem Drachen" width="206" height="206" loading="lazy"></button>
+            <figcaption><b>Hl. Georg mit dem Drachen</b></figcaption></figure>
+          <figure class="work tile" data-cat="heilige"><button type="button"><img src="bilder/klein/hl-georg-drache-2.jpg" alt="Ikone des heiligen Georg auf weißem Pferd mit dem Drachen" width="206" height="206" loading="lazy"></button>
+            <figcaption><b>Hl. Georg mit dem Drachen</b></figcaption></figure>
+          <figure class="work tile" data-cat="heilige"><button type="button"><img src="bilder/klein/hl-georg-drache-bogen.jpg" alt="Ikone des heiligen Georg mit dem Drachen, oben rund abgeschlossen" width="206" height="206" loading="lazy"></button>
+            <figcaption><b>Hl. Georg mit dem Drachen</b><span>Ikone mit Rundbogen</span></figcaption></figure>
+          <figure class="work tile" data-cat="heilige"><button type="button"><img src="bilder/klein/hl-georg-kleinikone.jpg" alt="Kleine Ikone des heiligen Georg mit dem Drachen, in der Hand gehalten" width="206" height="206" loading="lazy"></button>
+            <figcaption><b>Hl. Georg mit dem Drachen</b><span>Kleinikone</span></figcaption></figure>
+        </div>
       </div>
     </div>
   </section>
@@ -444,8 +525,14 @@
   <section id="kuenstler">
     <div class="wrap">
       <div class="artist-grid">
-        <div class="artist-photo">
-          <img src="bilder/miomir.webp" alt="Ikonenmaler Miomir, Porträtfoto" loading="lazy">
+        <div>
+          <div class="artist-photo">
+            <img src="bilder/miomir-werkstatt.jpg" alt="Miomir in seiner Werkstatt mit einer kleinen Ikone der Gottesmutter in den Händen" width="736" height="1000" loading="lazy">
+          </div>
+          <div class="artist-more">
+            <figure><img src="bilder/miomir.webp" alt="Porträtfoto von Miomir" loading="lazy"><figcaption>Miomir heute</figcaption></figure>
+            <figure><img src="bilder/miomir-frueh.jpg" alt="Miomir in jungen Jahren mit einem selbst gemalten Ikonenkreuz" width="206" height="206" loading="lazy"><figcaption>In jungen Jahren mit einem seiner frühen Ikonenkreuze</figcaption></figure>
+          </div>
         </div>
         <div>
           <span class="eyebrow">Über den Künstler</span>
@@ -461,7 +548,7 @@
         <div>
           <span class="eyebrow">Verbunden mit dem Berg Athos</span>
           <h3>Im Kloster Hilandar zu Hause</h3>
-          <p>Miomir war oft im Kloster Hilandar auf dem Heiligen Berg Athos in Griechenland. Dort ist er bekannt und hat für das Kloster Ikonen gemalt. Der heilige Simeon, dessen Ikone hier zu sehen ist, gilt als Gründer von Hilandar – ein Motiv, das Miomir besonders am Herzen liegt.</p>
+          <p>Miomir war oft im Kloster Hilandar auf dem Heiligen Berg Athos in Griechenland. Dort ist er bekannt und hat für das Kloster Ikonen gemalt. Der heilige Simeon, dessen Ikone hier zu sehen ist, gründete Hilandar Ende des 12. Jahrhunderts gemeinsam mit seinem Sohn, dem heiligen Sava – beide Motive liegen Miomir besonders am Herzen.</p>
         </div>
       </div>
     </div>
@@ -652,6 +739,12 @@
     const f = btn.dataset.filter;
     filterBtns.forEach(b => b.setAttribute('aria-pressed', b === btn));
     works.forEach(w => w.classList.toggle('hidden', f !== 'alle' && !w.dataset.cat.split(' ').includes(f)));
+    // Leere Galerie-Bereiche ausblenden, damit keine Lücke bleibt
+    const main = document.querySelector('.gallery'), more = document.querySelector('.more-works');
+    const any = el => [...el.querySelectorAll('.work')].some(w => !w.classList.contains('hidden'));
+    main.hidden = !any(main);
+    more.hidden = !any(more);
+    more.classList.toggle('alone', main.hidden);
   }));
 
   // Lightbox
@@ -661,6 +754,7 @@
     const img = b.querySelector('img');
     const cap = b.closest('.work').querySelector('figcaption b');
     lbImg.src = img.src; lbImg.alt = img.alt;
+    lbImg.style.width = img.naturalWidth && img.naturalWidth < 400 ? (img.naturalWidth * 2) + 'px' : '';
     lbCap.textContent = cap ? cap.textContent : img.alt;
     lastFocus = b; lb.classList.add('open'); lb.querySelector('.close').focus();
   }));
