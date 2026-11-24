@@ -72,8 +72,8 @@ $motiv   = einzeilig(feld('motiv', 200));
 $notiz   = feld('notiz', 5000);
 $consent = !empty($_POST['datenschutz']);
 
-$erlaubteArten = ['Ikone auf Holz', 'Kleinikone auf Stein', 'Gezeichnetes Porträt'];
-if (!in_array($art, $erlaubteArten, true)) $art = 'Ikone auf Holz';
+$erlaubteArten = ['Ikone auf MDF-Tafel', 'Kleinikone auf Stein'];
+if (!in_array($art, $erlaubteArten, true)) $art = 'Ikone auf MDF-Tafel';
 
 if (mb_strlen($name) < 2)                          antwort(false, 'Bitte geben Sie Ihren Namen an.', 422);
 if (!filter_var($email, FILTER_VALIDATE_EMAIL))    antwort(false, 'Bitte geben Sie eine gültige E-Mail-Adresse an.', 422);

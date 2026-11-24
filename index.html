@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ikonenatelier Miomir – Handgemalte orthodoxe Ikonen</title>
-<meta name="description" content="Handgemalte orthodoxe Ikonen in Eitempera auf Holz mit echtem Blattgold. Ikonen nach Auftrag, Kleinikonen auf Stein und gezeichnete Porträts von Ikonenmaler Miomir.">
+<meta name="description" content="Handgemalte orthodoxe Ikonen in Eitempera mit echtem Blattgold (22 oder 24 Karat). Ikonen nach Auftrag in jedem Format von 10 × 10 cm bis 2 × 2 m und Kleinikonen auf Stein von Ikonenmaler Miomir.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
@@ -166,19 +166,6 @@
   @media (max-width:900px){.occasions{grid-template-columns:1fr 1fr}}
   @media (max-width:520px){.occasions{grid-template-columns:1fr}}
 
-  /* Portraits */
-  .portraits{background:#ece3d4}
-  .portrait-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:56px;align-items:center}
-  .portrait-images{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  .portrait-images .work{margin:0}
-  .portrait-images .work:nth-child(1){grid-row:span 2}
-  .portrait-images{grid-template-rows:repeat(2,clamp(180px,22vw,260px))}
-  .portrait-images .work,.portrait-images .work button{height:100%}
-  .portrait-images .work img{height:100%;object-fit:cover;object-position:center 25%}
-  .portrait-list{list-style:none;padding:0;margin:20px 0 28px}
-  .portrait-list li{padding:10px 0 10px 26px;position:relative;border-bottom:1px solid var(--line)}
-  .portrait-list li::before{content:"";position:absolute;left:4px;top:19px;width:8px;height:8px;background:var(--cinnabar);transform:rotate(45deg)}
-  @media (max-width:900px){.portrait-grid{grid-template-columns:1fr}}
 
   /* Artist */
   .artist-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:center}
@@ -217,7 +204,7 @@
   .field.invalid input,.field.invalid select{border-color:var(--cinnabar)}
   .field.invalid .error{display:block}
   fieldset.field{border:0;padding:0;margin:0}
-  .types{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .types{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
   .types label{display:flex;gap:10px;align-items:center;padding:14px;border:1px solid #cdbfa8;border-radius:var(--radius);background:#fff;cursor:pointer;font-weight:400}
   .types label:has(input:checked){border-color:var(--gold);background:#fbf3e2;box-shadow:0 0 0 1px var(--gold)}
   .types input{accent-color:var(--cinnabar)}
@@ -271,7 +258,7 @@
   <div class="wrap">
     <a class="brand" href="#start" aria-label="Ikonenatelier Miomir – zur Startseite">
       <span class="brand-mark" aria-hidden="true">М</span>
-      <span class="brand-name">Ikonenatelier Miomir<small>Ikonen · Porträts</small></span>
+      <span class="brand-name">Ikonenatelier Miomir<small>Orthodoxe Ikonen</small></span>
     </a>
     <button class="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Menü öffnen">
       <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="1.6"/></svg>
@@ -281,7 +268,6 @@
         <li><a href="#galerie">Ikonen</a></li>
         <li><a href="#entstehung">Entstehung</a></li>
         <li><a href="#formate">Formate</a></li>
-        <li><a href="#portraets">Porträts</a></li>
         <li><a href="#kuenstler">Der Künstler</a></li>
         <li><a class="btn btn-gold" href="#anfrage">Ikone anfragen</a></li>
       </ul>
@@ -297,14 +283,14 @@
       <div>
         <span class="eyebrow">Orthodoxe Ikonenmalerei seit über 20 Jahren</span>
         <h1>Handgemalte Ikonen in Eitempera und <em>echtem Blattgold</em></h1>
-        <p class="lead">Jede Ikone entsteht von Hand auf einer Holztafel – nach überlieferten Vorbildern, mit Farben aus Pigment und Eigelb und Vergoldungen aus echtem Gold. Ein Unikat für Ihr Zuhause, Ihre Familie oder Ihre Gemeinde.</p>
+        <p class="lead">Jede Ikone entsteht von Hand auf einer formstabilen MDF-Tafel – nach überlieferten Vorbildern, mit Farben aus Pigment und Eigelb und Vergoldungen aus echtem Gold. Ein Unikat für Ihr Zuhause, Ihre Familie oder Ihre Gemeinde.</p>
         <div class="hero-actions">
           <a class="btn btn-gold" href="#anfrage">Unverbindliches Angebot anfragen</a>
           <a class="btn btn-line" href="#galerie">Werke ansehen</a>
         </div>
       </div>
       <figure class="hero-figure">
-        <div class="crop-g"><img src="bilder/gorgoepikoos.png" alt="Ikone der Gottesmutter Gorgoepikoos mit dem Christuskind, Eitempera und Blattgold auf Holz" width="558" height="632"></div>
+        <div class="crop-g"><img src="bilder/gorgoepikoos.png" alt="Ikone der Gottesmutter Gorgoepikoos mit dem Christuskind, Eitempera und Blattgold auf MDF-Tafel" width="558" height="632"></div>
         <figcaption>Gottesmutter „Gorgoepikoos“ – die schnell Erhörende</figcaption>
       </figure>
     </div>
@@ -314,8 +300,8 @@
   <div class="facts">
     <ul>
       <li><i class="dot" aria-hidden="true"></i><div><strong>Über 20 Jahre</strong><span>Erfahrung in der orthodoxen Ikonenmalerei</span></div></li>
-      <li><i class="dot" aria-hidden="true"></i><div><strong>Eitempera auf Holz</strong><span>Natürliche Pigmente, mit Eigelb gebunden</span></div></li>
-      <li><i class="dot" aria-hidden="true"></i><div><strong>Echtes Blattgold</strong><span>Nimben und Hintergründe von Hand vergoldet</span></div></li>
+      <li><i class="dot" aria-hidden="true"></i><div><strong>Echte Eitempera</strong><span>Natürliche Pigmente, mit Eigelb gebunden</span></div></li>
+      <li><i class="dot" aria-hidden="true"></i><div><strong>Echtes Blattgold</strong><span>22 oder 24 Karat, von Hand vergoldet</span></div></li>
       <li><i class="dot" aria-hidden="true"></i><div><strong>Kloster Hilandar</strong><span>Ikonen für das Kloster auf dem Berg Athos</span></div></li>
     </ul>
   </div>
@@ -339,27 +325,27 @@
 
       <div class="gallery">
         <figure class="work" data-cat="gottesmutter"><button type="button"><span class="crop-g" style="display:block"><img src="bilder/gorgoepikoos.png" alt="Ikone der Gottesmutter Gorgoepikoos mit Christuskind" loading="lazy"></span></button>
-          <figcaption><b>Gottesmutter Gorgoepikoos</b><span>Eitempera und Blattgold auf Holz</span></figcaption></figure>
+          <figcaption><b>Gottesmutter Gorgoepikoos</b><span>Eitempera und Blattgold auf MDF-Tafel</span></figcaption></figure>
         <figure class="work" data-cat="feste"><button type="button"><img src="bilder/christi-geburt.webp" alt="Festtagsikone der Geburt Christi mit Engeln, Hirten und Gottesmutter" loading="lazy"></button>
-          <figcaption><b>Geburt Christi</b><span>Festtagsikone, Eitempera auf Holz</span></figcaption></figure>
+          <figcaption><b>Geburt Christi</b><span>Festtagsikone, Eitempera auf MDF-Tafel</span></figcaption></figure>
         <figure class="work" data-cat="heilige"><button type="button"><img src="bilder/hl-georg.png" alt="Ikone des heiligen Georg mit Lanze auf rotem Grund" loading="lazy"></button>
-          <figcaption><b>Hl. Georg</b><span>Eitempera auf Holz, vertiefte Malfläche</span></figcaption></figure>
+          <figcaption><b>Hl. Georg</b><span>Eitempera auf MDF-Tafel, vertiefte Malfläche</span></figcaption></figure>
         <figure class="work" data-cat="heilige"><button type="button"><img src="bilder/erzengel-michael.jpg" alt="Ganzfigurige Ikone des Erzengels Michael mit Schwert auf dunkelblauem Grund" loading="lazy"></button>
-          <figcaption><b>Erzengel Michael</b><span>Standikone, Eitempera auf Holz</span></figcaption></figure>
+          <figcaption><b>Erzengel Michael</b><span>Standikone, Eitempera auf MDF-Tafel</span></figcaption></figure>
         <figure class="work" data-cat="heilige"><button type="button"><img src="bilder/hl-georg-drache-gold.jpg" alt="Ikone des heiligen Georg auf weißem Pferd im Kampf mit dem Drachen, gelber Grund" loading="lazy"></button>
-          <figcaption><b>Hl. Georg mit dem Drachen</b><span>Eitempera auf Holz, vertiefte Malfläche</span></figcaption></figure>
+          <figcaption><b>Hl. Georg mit dem Drachen</b><span>Eitempera auf MDF-Tafel, vertiefte Malfläche</span></figcaption></figure>
         <figure class="work" data-cat="heilige"><button type="button"><img src="bilder/hl-georg-drache-rot.jpg" alt="Ikone des heiligen Georg auf weißem Pferd im Kampf mit dem Drachen, roter Grund" loading="lazy"></button>
-          <figcaption><b>Hl. Georg mit dem Drachen</b><span>Eitempera und Blattgold auf Holz</span></figcaption></figure>
+          <figcaption><b>Hl. Georg mit dem Drachen</b><span>Eitempera und Blattgold auf MDF-Tafel</span></figcaption></figure>
         <figure class="work" data-cat="heilige"><button type="button"><img src="bilder/hl-simeon.png" alt="Großformatige Ikone des heiligen Simeon, daneben der Künstler mit der Ikone" loading="lazy"></button>
           <figcaption><b>Hl. Simeon</b><span>Großformat, Eitempera und Blattgold</span></figcaption></figure>
         <figure class="work" data-cat="feste"><button type="button"><img src="bilder/auferstehung.webp" alt="Festtagsikone der Auferstehung Christi auf goldenem Grund" loading="lazy"></button>
           <figcaption><b>Auferstehung Christi</b><span>Eitempera auf Blattgoldgrund</span></figcaption></figure>
         <figure class="work" data-cat="heilige"><button type="button"><img src="bilder/hagia-sophia.png" alt="Ikone der Heiligen Sophia, der Weisheit Gottes, als Engel mit Kelch" loading="lazy"></button>
-          <figcaption><b>Hagia Sophia – Weisheit Gottes</b><span>Eitempera und Blattgold auf Holz</span></figcaption></figure>
+          <figcaption><b>Hagia Sophia – Weisheit Gottes</b><span>Eitempera und Blattgold auf MDF-Tafel</span></figcaption></figure>
         <figure class="work" data-cat="stein gottesmutter"><button type="button"><img src="bilder/gottesmutter-stein.png" alt="Gottesmutter auf einem großen Naturstein mit goldenem Nimbus" loading="lazy"></button>
           <figcaption><b>Gottesmutter auf Naturstein</b><span>Eitempera und Blattgold auf Stein</span></figcaption></figure>
         <figure class="work" data-cat="heilige"><button type="button"><img src="bilder/hl-demetrius.png" alt="Ikone des heiligen Großmärtyrers Demetrius auf blauem Grund" loading="lazy"></button>
-          <figcaption><b>Hl. Großmärtyrer Demetrius</b><span>Eitempera und Blattgold auf Holz</span></figcaption></figure>
+          <figcaption><b>Hl. Großmärtyrer Demetrius</b><span>Eitempera und Blattgold auf MDF-Tafel</span></figcaption></figure>
         <figure class="work" data-cat="gottesmutter heilige"><button type="button"><img src="bilder/kleinikonen-serie.webp" alt="Serie kleiner Ikonen: Gottesmutter, hl. Nikolaus, hl. Hildegard, Schutzengel und Christus" loading="lazy"></button>
           <figcaption><b>Serie kleiner Hausikonen</b><span>Gottesmutter, hl. Nikolaus, hl. Hildegard, Schutzengel</span></figcaption></figure>
         <figure class="work" data-cat="stein gottesmutter"><button type="button"><img src="bilder/kleinikone-stein.png" alt="Kleine Ikone der Gottesmutter auf einem Flussstein" loading="lazy"></button>
@@ -376,9 +362,9 @@
       <p class="lead">In der orthodoxen Tradition sagt man, eine Ikone werde nicht gemalt, sondern „geschrieben“. Jeder Arbeitsschritt folgt überlieferten Regeln – und braucht Zeit.</p>
       <div class="tech-grid">
         <ol class="steps">
-          <li><div><h3>Die Holztafel</h3><p>Eine abgelagerte Holztafel wird vorbereitet, oft mit vertiefter Malfläche, und mit Leinen und mehreren Schichten Kreidegrund überzogen und glatt geschliffen.</p></div></li>
+          <li><div><h3>Die Malplatte</h3><p>Als Malgrund dient eine MDF-Platte. Anders als Massivholz verzieht oder reißt sie nicht – auch nicht bei großen Formaten. Sie wird, oft mit vertiefter Malfläche, mehrfach grundiert und glatt geschliffen.</p></div></li>
           <li><div><h3>Vorzeichnung</h3><p>Das Motiv wird nach kanonischen Vorbildern auf den Grund übertragen – Haltung, Gesten und Farben haben jeweils ihre Bedeutung.</p></div></li>
-          <li><div><h3>Vergoldung mit echtem Gold</h3><p>Nimben und Hintergründe werden mit hauchdünnem Blattgold belegt. Das Gold steht für das göttliche Licht.</p></div></li>
+          <li><div><h3>Vergoldung mit echtem Gold</h3><p>Nimben und Hintergründe werden mit hauchdünnem Blattgold von 22 oder 24 Karat belegt. Das Gold steht für das göttliche Licht.</p></div></li>
           <li><div><h3>Malen in Eitempera</h3><p>Die Farben werden aus Pigmenten und Eigelb angerührt und in vielen lasierenden Schichten aufgetragen – vom Dunklen zum Hellen.</p></div></li>
           <li><div><h3>Inschrift &amp; Schutz</h3><p>Zum Schluss erhält die Ikone die Inschrift des Heiligen und einen schützenden Firnis, der die Farben über Generationen bewahrt.</p></div></li>
         </ol>
@@ -395,8 +381,8 @@
     <div class="wrap">
       <div class="center">
         <span class="eyebrow">Formate</span>
-        <h2>Von der Kleinikone bis zur Kirchenikone</h2>
-        <p class="lead">Jede Ikone wird für Sie angefertigt. Die üblichen Formate finden Sie hier – andere Maße sind auf Anfrage ebenfalls möglich.</p>
+        <h2>Jedes Format von 10 × 10 cm bis 2 × 2 m</h2>
+        <p class="lead">Jede Ikone wird für Sie angefertigt – im Maß, das zu Ihrem Raum passt: von der kleinen Reiseikone mit 10 × 10 cm bis zur Kirchenikone mit 2 × 2 m. Hier einige beliebte Formate zur Orientierung.</p>
       </div>
 
       <div class="formats-grid">
@@ -443,36 +429,13 @@
           <div class="price"><span>Preis auf Anfrage</span><a href="#anfrage" data-format="Kleinikone auf Stein">Anfragen →</a></div>
         </article>
       </div>
-      <p class="formats-note">Der Preis richtet sich nach Format, Anzahl der Figuren, Umfang der Vergoldung und Arbeitszeit. Sie erhalten ein persönliches Angebot.</p>
+      <p class="formats-note">Ihr Wunschmaß ist nicht dabei? Jedes Format zwischen 10 × 10 cm und 2 × 2 m ist möglich. Der Preis richtet sich nach Format, Anzahl der Figuren, Umfang der Vergoldung und Arbeitszeit – Sie erhalten ein persönliches Angebot.</p>
 
       <div class="occasions">
         <div class="occasion"><h3>Taufe &amp; Namenstag</h3><p>Die Ikone des Namenspatrons begleitet ein Kind ein Leben lang.</p></div>
         <div class="occasion"><h3>Hochzeit</h3><p>Traditionelle Hochzeitsikonen – Christus und die Gottesmutter – für das Brautpaar.</p></div>
         <div class="occasion"><h3>Hausikone</h3><p>Für die Gebetsecke zu Hause, nach Ihrem Wunschmotiv.</p></div>
         <div class="occasion"><h3>Kirchen &amp; Klöster</h3><p>Einzelikonen und Festtagsikonen für Gemeinden und Kapellen.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PORTRÄTS -->
-  <section class="portraits" id="portraets">
-    <div class="wrap portrait-grid">
-      <div class="portrait-images">
-        <figure class="work"><button type="button"><img src="bilder/portrait-bleistift.webp" alt="Porträt eines bärtigen Mannes, Bleistiftzeichnung" loading="lazy"></button></figure>
-        <figure class="work"><button type="button"><img src="bilder/portrait-mann.png" alt="Porträt eines Mannes mit Bart, Bleistift und Lavierung" loading="lazy"></button></figure>
-        <figure class="work"><button type="button"><img src="bilder/portrait-tusche.png" alt="Porträt eines Mannes mit Dreispitz, Tusche in Sepia" loading="lazy"></button></figure>
-      </div>
-      <div>
-        <span class="eyebrow">Neben den Ikonen</span>
-        <h2>Gezeichnete Porträts nach Ihrem Foto</h2>
-        <p class="lead">Mit Bleistift, Kohle oder Tusche zeichnet Miomir ausdrucksstarke Porträts – mit demselben Blick für Gesichter, der auch seine Ikonen prägt.</p>
-        <ul class="portrait-list">
-          <li>Individuelle Porträts nach Ihrer Fotovorlage</li>
-          <li>Einzel- und Paarporträts, auch als Erinnerung an Verstorbene</li>
-          <li>Bleistift, Kohle oder Tusche in Sepia</li>
-          <li>Ein persönliches Geschenk zu Geburtstag, Jubiläum oder Ruhestand</li>
-        </ul>
-        <a class="btn btn-gold" href="#anfrage" data-type="portraet">Porträt anfragen</a>
       </div>
     </div>
   </section>
@@ -488,8 +451,7 @@
           <span class="eyebrow">Über den Künstler</span>
           <h2>Miomir – Ikonenmaler aus Überzeugung</h2>
           <p class="lead">Seit über zwanzig Jahren widmet sich Miomir der orthodoxen Ikonenmalerei – mit Geduld, Demut und großer Liebe zum Detail.</p>
-          <p>Er arbeitet ausschließlich in der traditionellen Technik: Eitempera auf Holz, Farben aus Pigmenten und Eigelb, Vergoldungen mit echtem Blattgold. So entstehen Ikonen, die nicht nur schön sind, sondern für das Gebet geschaffen wurden – und für Generationen.</p>
-          <p>Neben den Ikonen zeichnet er seit vielen Jahren Porträts mit Bleistift, Kohle und Tusche. In beiden Arbeiten geht es ihm um dasselbe: den Blick und das Wesen eines Menschen sichtbar zu machen.</p>
+          <p>Er malt in der traditionellen Technik der Eitempera: Farben aus Pigmenten und Eigelb, Vergoldungen mit echtem Blattgold von 22 oder 24 Karat, auf formstabilen MDF-Tafeln. So entstehen Ikonen, die nicht nur schön sind, sondern für das Gebet geschaffen wurden – und für Generationen.</p>
           <div class="signature">Miomir</div>
         </div>
       </div>
@@ -509,7 +471,7 @@
   <section class="request" id="anfrage">
     <div class="wrap">
       <div class="center">
-        <span class="eyebrow">Ikone oder Porträt anfragen</span>
+        <span class="eyebrow">Ikone anfragen</span>
         <h2>Ihr persönliches Angebot</h2>
         <p class="lead">Schicken Sie Miomir ein Bild der Ikone, die Sie sich wünschen, und ein paar Worte dazu. Sie erhalten ein unverbindliches Angebot mit Preis und voraussichtlichem Fertigstellungstermin.</p>
       </div>
@@ -537,9 +499,8 @@
         <fieldset class="field full">
           <legend>Was möchten Sie anfragen?</legend>
           <div class="types">
-            <label><input type="radio" name="art" value="Ikone auf Holz" checked> Ikone auf Holz</label>
+            <label><input type="radio" name="art" value="Ikone auf MDF-Tafel" checked> Ikone auf Tafel</label>
             <label><input type="radio" name="art" value="Kleinikone auf Stein"> Kleinikone auf Stein</label>
-            <label><input type="radio" name="art" value="Gezeichnetes Porträt"> Gezeichnetes Porträt</label>
           </div>
         </fieldset>
 
@@ -567,7 +528,7 @@
             <option>40 × 30 cm</option>
             <option>30 × 20 cm</option>
             <option>Kleinikone auf Stein</option>
-            <option>Anderes Format (bitte in der Notiz angeben)</option>
+            <option>Eigenes Format (10 × 10 cm bis 2 × 2 m – Maße bitte in der Notiz)</option>
           </select>
         </div>
         <div class="field full">
@@ -577,7 +538,7 @@
 
         <div class="field full">
           <span style="font-weight:600;font-size:.95rem" id="uploadLabel">Bildvorlage</span>
-          <p class="hint">Ein Foto der Ikone, die Sie sich wünschen – oder bei Porträts das Foto der Person. JPG, PNG oder WEBP, bis zu 5 Bilder.</p>
+          <p class="hint">Ein Foto der Ikone, die Sie sich wünschen. JPG, PNG oder WEBP, bis zu 5 Bilder.</p>
           <label class="dropzone" id="dropzone" aria-labelledby="uploadLabel">
             <input id="bilder" name="bilder" type="file" accept="image/*" multiple>
             <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" style="color:var(--gold);margin:0 auto 8px;display:block"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg>
@@ -613,7 +574,8 @@
       <div class="faq">
         <details><summary>Wie lange dauert es, bis meine Ikone fertig ist?</summary><p>Das hängt von Format, Motiv und Vergoldung ab. Eine Ikone entsteht in vielen Schichten, die jeweils trocknen müssen. Den voraussichtlichen Fertigstellungstermin nennt Miomir Ihnen im Angebot.</p></details>
         <details><summary>Kann ich eine Ikone nach einer eigenen Vorlage bestellen?</summary><p>Ja. Schicken Sie einfach ein Foto der gewünschten Ikone mit. Miomir malt sie in seiner Handschrift und in traditioneller Technik – kein Druck, keine Kopie, sondern ein Original.</p></details>
-        <details><summary>Ist das Gold echt?</summary><p>Ja. Für Nimben, Hintergründe und Ornamente verwendet Miomir echtes Blattgold – kein Schlagmetall und keine Goldfarbe.</p></details>
+        <details><summary>Auf welchem Untergrund wird gemalt?</summary><p>Auf MDF-Platten. Sie sind formstabil, verziehen sich nicht und reißen nicht – so bleibt die Malschicht auch bei großen Ikonen dauerhaft erhalten. Kleinikonen malt Miomir auch auf echten Natursteinen.</p></details>
+        <details><summary>Ist das Gold echt?</summary><p>Ja. Für Nimben, Hintergründe und Ornamente verwendet Miomir echtes Blattgold mit 22 oder 24 Karat – kein Schlagmetall und keine Goldfarbe.</p></details>
         <details><summary>Kann die Ikone geweiht werden?</summary><p>Viele Kunden lassen ihre Ikone in ihrer Kirche segnen. Sprechen Sie Ihren Wunsch gern in der Anfrage an.</p></details>
         <details><summary>Wie pflege ich meine Ikone?</summary><p>Hängen Sie die Ikone nicht in direktes Sonnenlicht und nicht über die Heizung. Staub nur mit einem weichen, trockenen Pinsel oder Tuch entfernen.</p></details>
       </div>
@@ -626,7 +588,7 @@
     <div class="foot-grid">
       <div>
         <h4>Ikonenatelier Miomir</h4>
-        <p>Handgemalte orthodoxe Ikonen in Eitempera und echtem Blattgold. Gezeichnete Porträts auf Anfrage.</p>
+        <p>Handgemalte orthodoxe Ikonen in Eitempera und echtem Blattgold. Versand innerhalb Deutschlands.</p>
       </div>
       <div>
         <h4>Kontakt</h4>
@@ -641,7 +603,6 @@
         <ul>
           <li><a href="#galerie">Ikonen</a></li>
           <li><a href="#formate">Formate</a></li>
-          <li><a href="#portraets">Porträts</a></li>
           <li><a href="#anfrage">Anfrage</a></li>
         </ul>
       </div>
@@ -707,15 +668,11 @@
   lb.addEventListener('click', e => { if (e.target === lb || e.target.classList.contains('close')) closeLb(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('open')) closeLb(); });
 
-  // Vorbelegung aus Format-Karten und Porträt-Button
+  // Vorbelegung aus den Format-Karten
   const formatSel = document.getElementById('format');
   document.querySelectorAll('[data-format]').forEach(a => a.addEventListener('click', () => {
     formatSel.value = a.dataset.format;
-    document.querySelector(`input[name=art][value="${a.dataset.format === 'Kleinikone auf Stein' ? 'Kleinikone auf Stein' : 'Ikone auf Holz'}"]`).checked = true;
-  }));
-  document.querySelectorAll('[data-type="portraet"]').forEach(a => a.addEventListener('click', () => {
-    document.querySelector('input[name=art][value="Gezeichnetes Porträt"]').checked = true;
-    formatSel.value = '';
+    document.querySelector(`input[name=art][value="${a.dataset.format === 'Kleinikone auf Stein' ? 'Kleinikone auf Stein' : 'Ikone auf MDF-Tafel'}"]`).checked = true;
   }));
 
   // Bild-Upload mit Vorschau
