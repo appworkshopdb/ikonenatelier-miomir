@@ -168,39 +168,35 @@ nav.main .btn{padding:10px 18px;font-size:.92rem;opacity:1}
 
 
 /* Artist */
-.artist-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:center}
-.artist-photo{position:relative}
-.artist-photo img{border-radius:2px;filter:saturate(.92)}
-.artist-photo::before{content:"";position:absolute;inset:-14px 14px 14px -14px;border:1px solid var(--gold);z-index:-1}
-.artist-photo{isolation:isolate}
-.artist-grid{align-items:start}
-/* Künstler-Slideshow */
-.artist-photo{display:grid;background:var(--night)}
-.artist-photo .slide{grid-area:1/1;margin:0;display:flex;flex-direction:column;opacity:0;visibility:hidden;transition:opacity .9s ease,visibility 0s .9s}
-.artist-photo .slide.is-active{opacity:1;visibility:visible;transition:opacity .9s ease}
-.artist-photo .slide img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
-.artist-photo figcaption{flex:1;padding:18px 22px 20px;color:#e9dfcd;font-size:.98rem;line-height:1.5;background:var(--night);border-top:2px solid var(--gold)}
-.artist-photo figcaption b{display:block;font:600 1.5rem/1.2 var(--serif);color:var(--gold-light);margin-bottom:4px}
-.slider-nav{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:22px}
-.slider-nav button{border:0;background:none;cursor:pointer;color:var(--ink);font:inherit}
-.sl-prev,.sl-next,.sl-pause{width:44px;height:44px;border-radius:50%;border:1px solid var(--line)!important;font-size:1.5rem!important;line-height:1;display:grid;place-items:center;transition:border-color .2s,color .2s}
-.sl-pause{margin-left:6px}
-.sl-pause svg{fill:currentColor}
-.sl-pause .i-play,.sl-pause[aria-pressed="true"] .i-pause{display:none}
-.sl-pause[aria-pressed="true"] .i-play{display:inline}
-.sl-prev:hover,.sl-next:hover,.sl-pause:hover{border-color:var(--gold)!important;color:var(--cinnabar)}
-.sl-dots{display:flex;gap:4px}
-.sl-dots button{width:28px;height:44px;position:relative}
-.sl-dots button::after{content:"";position:absolute;left:50%;top:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;border:1px solid var(--gold);transition:background .2s}
-.sl-dots button[aria-current="true"]::after{background:var(--gold)}
-.slider-nav button:focus-visible{outline:2px solid var(--cinnabar);outline-offset:2px}
-@media (max-width:600px){.artist-photo figcaption{padding:14px 16px 16px;font-size:.92rem}.artist-photo figcaption b{font-size:1.3rem}}
+/* Über den Künstler: Einleitung und breite Slideshow */
+.artist-intro{display:grid;grid-template-columns:1fr 1.25fr;gap:64px;align-items:start}
+.artist-intro h2{margin-bottom:0}
+.artist-show{position:relative;display:grid;margin-top:56px;background:var(--night);border-radius:var(--radius);overflow:hidden;box-shadow:0 18px 40px rgba(22,32,43,.18)}
+.artist-show .slide{grid-area:1/1;margin:0;display:grid;grid-template-columns:2fr 3fr;opacity:0;visibility:hidden;transition:opacity .9s ease,visibility 0s .9s}
+.artist-show .slide.is-active{opacity:1;visibility:visible;transition:opacity .9s ease}
+.artist-show .slide img{width:100%;height:100%;min-height:520px;object-fit:cover;filter:saturate(.92)}
+.artist-show figcaption{display:flex;flex-direction:column;justify-content:center;padding:56px 64px 96px;color:#d9cfbd;font-size:1.15rem;line-height:1.6;border-left:2px solid var(--gold);background:radial-gradient(ellipse at 80% 30%,#24364a 0%,var(--night) 70%)}
+.artist-show figcaption b{display:block;font:600 clamp(2rem,3.4vw,2.8rem)/1.15 var(--serif);color:var(--gold-light);margin-bottom:.4em}
+.sl-num{font-size:.78rem;font-weight:600;letter-spacing:.2em;color:var(--gold);margin-bottom:18px}
+.sl-dots{position:absolute;left:calc(40% + 54px);bottom:28px;display:flex;gap:2px}
+.sl-dots button{width:30px;height:44px;border:0;background:none;cursor:pointer;position:relative}
+.sl-dots button::after{content:"";position:absolute;left:50%;top:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;border:1px solid var(--gold-light);transition:background .2s,transform .2s}
+.sl-dots button[aria-current="true"]::after{background:var(--gold-light);transform:scale(1.15)}
+.sl-dots button:focus-visible{outline:2px solid var(--gold-light);outline-offset:-6px;border-radius:50%}
+@media (max-width:900px){.artist-intro{grid-template-columns:1fr;gap:20px}.artist-show figcaption{padding:40px 36px 88px}.sl-dots{left:calc(40% + 26px)}}
+@media (max-width:700px){
+  .artist-show{margin-top:40px}
+  .artist-show .slide{grid-template-columns:1fr;grid-template-rows:auto 1fr}
+  .artist-show .slide img{min-height:0;height:auto;aspect-ratio:4/5}
+  .artist-show figcaption{border-left:0;border-top:2px solid var(--gold);padding:24px 20px 72px;font-size:1rem;justify-content:flex-start}
+  .sl-num{margin-bottom:10px}
+  .sl-dots{left:10px;bottom:14px}
+}
 .signature{font:italic 500 1.8rem/1 var(--serif);color:var(--cinnabar);margin-top:8px}
 .hilandar{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;margin-top:56px;padding:28px;background:#fffaf2;border:1px solid var(--line);border-radius:var(--radius)}
 .hilandar img{width:220px;border-radius:2px}
 .hilandar h3{margin-bottom:.3em}
 .hilandar p{margin:0;color:var(--ink-soft)}
-@media (max-width:900px){.artist-grid{grid-template-columns:1fr;gap:48px}.artist-slider{max-width:460px}}
 @media (max-width:640px){.hilandar{grid-template-columns:1fr}.hilandar img{width:100%}}
 
 /* Process + form */

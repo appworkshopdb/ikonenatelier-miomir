@@ -184,39 +184,35 @@
   <!-- KÜNSTLER -->
   <section id="kuenstler">
     <div class="wrap">
-      <div class="artist-grid">
-        <div class="artist-slider" role="region" aria-roledescription="Bildergalerie" aria-label="Fotos von Miomir">
-          <div class="artist-photo">
-            <figure class="slide is-active" aria-roledescription="Bild" aria-label="1 von 3">
-              <img src="bilder/miomir-werkstatt.jpg" alt="Miomir in seiner Werkstatt mit einer kleinen Ikone der Gottesmutter in den Händen" style="object-position:center 60%">
-              <figcaption><b>In der Werkstatt</b>Hier entstehen Miomirs Ikonen – Schicht für Schicht, in Eitempera und echtem Blattgold.</figcaption>
-            </figure>
-            <figure class="slide" aria-roledescription="Bild" aria-label="2 von 3">
-              <img src="bilder/miomir-frueh.jpg" alt="Miomir in jungen Jahren mit einem selbst gemalten Ikonenkreuz" loading="lazy" style="object-position:center 8%">
-              <figcaption><b>Die Anfänge</b>In jungen Jahren mit einem seiner ersten Ikonenkreuze.</figcaption>
-            </figure>
-            <figure class="slide" aria-roledescription="Bild" aria-label="3 von 3">
-              <img src="bilder/miomir.webp" alt="Porträtfoto von Miomir" loading="lazy" style="object-position:center 30%">
-              <figcaption><b>Miomir heute</b>Seit über zwanzig Jahren malt er orthodoxe Ikonen – mit Geduld und Liebe zum Detail.</figcaption>
-            </figure>
-          </div>
-          <div class="slider-nav">
-            <button type="button" class="sl-prev" aria-label="Vorheriges Foto">‹</button>
-            <div class="sl-dots">
-              <button type="button" aria-label="Foto 1: In der Werkstatt" aria-current="true"></button>
-              <button type="button" aria-label="Foto 2: Die Anfänge"></button>
-              <button type="button" aria-label="Foto 3: Miomir heute"></button>
-            </div>
-            <button type="button" class="sl-next" aria-label="Nächstes Foto">›</button>
-            <button type="button" class="sl-pause" aria-label="Automatischen Wechsel anhalten" aria-pressed="false"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path class="i-pause" d="M4 3h3v10H4zM9 3h3v10H9z"/><path class="i-play" d="M5 3l8 5-8 5z"/></svg></button>
-          </div>
-        </div>
+      <div class="artist-intro">
         <div>
           <span class="eyebrow">Über den Künstler</span>
           <h2>Miomir – Ikonenmaler aus Überzeugung</h2>
+        </div>
+        <div>
           <p class="lead">Seit über zwanzig Jahren widmet sich Miomir der orthodoxen Ikonenmalerei – mit Geduld, Demut und großer Liebe zum Detail.</p>
           <p>Er malt in der traditionellen Technik der Eitempera: Farben aus Pigmenten und Eigelb, Vergoldungen mit echtem Blattgold von 22 oder 24 Karat, auf formstabilen MDF-Tafeln. So entstehen Ikonen, die nicht nur schön sind, sondern für das Gebet geschaffen wurden – und für Generationen.</p>
           <div class="signature">Miomir</div>
+        </div>
+      </div>
+
+      <div class="artist-show" role="region" aria-roledescription="Bildergalerie" aria-label="Fotos von Miomir">
+        <figure class="slide is-active" aria-roledescription="Bild" aria-label="1 von 3">
+          <img src="bilder/miomir-werkstatt.jpg" alt="Miomir in seiner Werkstatt mit einer kleinen Ikone der Gottesmutter in den Händen" style="object-position:center 60%">
+          <figcaption><span class="sl-num">01 / 03</span><b>In der Werkstatt</b>Hier entstehen Miomirs Ikonen – Schicht für Schicht, in Eitempera und echtem Blattgold.</figcaption>
+        </figure>
+        <figure class="slide" aria-roledescription="Bild" aria-label="2 von 3">
+          <img src="bilder/miomir-frueh.jpg" alt="Miomir in jungen Jahren mit einem selbst gemalten Ikonenkreuz" loading="lazy" style="object-position:center 12%">
+          <figcaption><span class="sl-num">02 / 03</span><b>Die Anfänge</b>In jungen Jahren mit einem seiner ersten Ikonenkreuze.</figcaption>
+        </figure>
+        <figure class="slide" aria-roledescription="Bild" aria-label="3 von 3">
+          <img src="bilder/miomir.webp" alt="Porträtfoto von Miomir" loading="lazy" style="object-position:center 30%">
+          <figcaption><span class="sl-num">03 / 03</span><b>Miomir heute</b>Seit über zwanzig Jahren malt er orthodoxe Ikonen – mit Geduld und Liebe zum Detail.</figcaption>
+        </figure>
+        <div class="sl-dots">
+          <button type="button" aria-label="Foto 1: In der Werkstatt" aria-current="true"></button>
+          <button type="button" aria-label="Foto 2: Die Anfänge"></button>
+          <button type="button" aria-label="Foto 3: Miomir heute"></button>
         </div>
       </div>
 
@@ -511,15 +507,14 @@
     const t = document.getElementById('thanks'); t.classList.add('show'); t.focus();
   });
 
-  // Künstler-Slideshow: wechselt alle 6 Sekunden, hält bei Maus/Fokus und auf Wunsch an
+  // Künstler-Slideshow: wechselt alle 6 Sekunden, hält an, solange Maus oder Tastaturfokus darauf liegen
   (() => {
-    const root = document.querySelector('.artist-slider');
+    const root = document.querySelector('.artist-show');
     if (!root) return;
     const slides = [...root.querySelectorAll('.slide')];
     const dots = [...root.querySelectorAll('.sl-dots button')];
-    const pauseBtn = root.querySelector('.sl-pause');
     const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let current = 0, timer = null, stopped = reduceMotion, hovering = false;
+    let current = 0, timer = null, hovering = false;
 
     const show = i => {
       current = (i + slides.length) % slides.length;
@@ -533,29 +528,20 @@
     };
     const schedule = () => {
       clearInterval(timer);
-      if (!stopped && !hovering && !document.hidden) timer = setInterval(() => show(current + 1), 6000);
-    };
-    const setStopped = v => {
-      stopped = v;
-      pauseBtn.setAttribute('aria-pressed', String(v));
-      pauseBtn.setAttribute('aria-label', v ? 'Automatischen Wechsel starten' : 'Automatischen Wechsel anhalten');
-      schedule();
+      if (!reduceMotion && !hovering && !document.hidden) timer = setInterval(() => show(current + 1), 6000);
     };
 
-    root.querySelector('.sl-prev').addEventListener('click', () => { show(current - 1); schedule(); });
-    root.querySelector('.sl-next').addEventListener('click', () => { show(current + 1); schedule(); });
     dots.forEach((d, n) => d.addEventListener('click', () => { show(n); schedule(); }));
-    pauseBtn.addEventListener('click', () => setStopped(!stopped));
-
-    const photo = root.querySelector('.artist-photo');
-    photo.addEventListener('mouseenter', () => { hovering = true; schedule(); });
-    photo.addEventListener('mouseleave', () => { hovering = false; schedule(); });
+    root.addEventListener('mouseenter', () => { hovering = true; schedule(); });
+    root.addEventListener('mouseleave', () => { hovering = false; schedule(); });
+    root.addEventListener('focusin', () => { hovering = true; schedule(); });
+    root.addEventListener('focusout', () => { hovering = false; schedule(); });
     document.addEventListener('visibilitychange', schedule);
 
     // Wischen auf dem Handy
     let startX = null;
-    photo.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
-    photo.addEventListener('touchend', e => {
+    root.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    root.addEventListener('touchend', e => {
       if (startX === null) return;
       const dx = e.changedTouches[0].clientX - startX;
       if (Math.abs(dx) > 40) { show(current + (dx < 0 ? 1 : -1)); schedule(); }
@@ -563,7 +549,7 @@
     });
 
     show(0);
-    setStopped(stopped);
+    schedule();
   })();
 </script>
 </body>
