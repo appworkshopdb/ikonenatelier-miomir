@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=20261124">
 </head>
 <body>
 
@@ -198,21 +198,21 @@
 
       <div class="artist-show" role="region" aria-roledescription="Bildergalerie" aria-label="Fotos von Miomir">
         <figure class="slide is-active" aria-roledescription="Bild" aria-label="1 von 3">
-          <img src="bilder/miomir-werkstatt.jpg" alt="Miomir in seiner Werkstatt mit einer kleinen Ikone der Gottesmutter in den Händen" style="object-position:center 60%">
-          <figcaption><span class="sl-num">01 / 03</span><b>In der Werkstatt</b>Hier entstehen Miomirs Ikonen – Schicht für Schicht, in Eitempera und echtem Blattgold.</figcaption>
+          <img src="bilder/miomir-frueh.jpg" alt="Miomir in jungen Jahren mit einem selbst gemalten Ikonenkreuz" style="object-position:center 12%">
+          <figcaption><span class="sl-num">01 / 03</span><b>Die Anfänge</b>Schon in jungen Jahren hat Miomir mit der Ikonenmalerei begonnen. Hier hält er eines seiner ersten Ikonenkreuze: in der Mitte der gekreuzigte Christus, ringsum Engel. Aus dieser frühen Leidenschaft ist eine Lebensaufgabe geworden.</figcaption>
         </figure>
         <figure class="slide" aria-roledescription="Bild" aria-label="2 von 3">
-          <img src="bilder/miomir-frueh.jpg" alt="Miomir in jungen Jahren mit einem selbst gemalten Ikonenkreuz" loading="lazy" style="object-position:center 12%">
-          <figcaption><span class="sl-num">02 / 03</span><b>Die Anfänge</b>In jungen Jahren mit einem seiner ersten Ikonenkreuze.</figcaption>
+          <img src="bilder/miomir.webp" alt="Porträtfoto von Miomir" loading="lazy" style="object-position:center 30%">
+          <figcaption><span class="sl-num">02 / 03</span><b>Miomir heute</b>Seit über zwanzig Jahren malt Miomir orthodoxe Ikonen – nach den überlieferten Vorbildern, mit Geduld und Demut. Er malt für die Gebetsecke zu Hause ebenso wie für Kirchen und Klöster. Geprägt hat ihn vor allem seine Zeit im Kloster Hilandar auf dem Berg Athos.</figcaption>
         </figure>
         <figure class="slide" aria-roledescription="Bild" aria-label="3 von 3">
-          <img src="bilder/miomir.webp" alt="Porträtfoto von Miomir" loading="lazy" style="object-position:center 30%">
-          <figcaption><span class="sl-num">03 / 03</span><b>Miomir heute</b>Seit über zwanzig Jahren malt er orthodoxe Ikonen – mit Geduld und Liebe zum Detail.</figcaption>
+          <img src="bilder/miomir-werkstatt.jpg" alt="Miomir in seiner Werkstatt mit einer kleinen Ikone der Gottesmutter in den Händen" loading="lazy" style="object-position:center 60%">
+          <figcaption><span class="sl-num">03 / 03</span><b>In der Werkstatt</b>Hier entstehen seine Ikonen – von der Kleinikone ab 10 × 10 cm bis zur großen Tafel von 2 × 2 m. Jede MDF-Platte wird geschliffen, mit Gesso grundiert und getrocknet. Dann malt Miomir Schicht für Schicht in Eitempera und vergoldet mit echtem Blattgold von 22 oder 24 Karat.</figcaption>
         </figure>
         <div class="sl-dots">
-          <button type="button" aria-label="Foto 1: In der Werkstatt" aria-current="true"></button>
-          <button type="button" aria-label="Foto 2: Die Anfänge"></button>
-          <button type="button" aria-label="Foto 3: Miomir heute"></button>
+          <button type="button" aria-label="Foto 1: Die Anfänge" aria-current="true"></button>
+          <button type="button" aria-label="Foto 2: Miomir heute"></button>
+          <button type="button" aria-label="Foto 3: In der Werkstatt"></button>
         </div>
       </div>
 
@@ -507,7 +507,7 @@
     const t = document.getElementById('thanks'); t.classList.add('show'); t.focus();
   });
 
-  // Künstler-Slideshow: wechselt alle 6 Sekunden, hält an, solange Maus oder Tastaturfokus darauf liegen
+  // Künstler-Slideshow: wechselt alle 9 Sekunden, hält an, solange Maus oder Tastaturfokus darauf liegen
   (() => {
     const root = document.querySelector('.artist-show');
     if (!root) return;
@@ -528,7 +528,7 @@
     };
     const schedule = () => {
       clearInterval(timer);
-      if (!reduceMotion && !hovering && !document.hidden) timer = setInterval(() => show(current + 1), 6000);
+      if (!reduceMotion && !hovering && !document.hidden) timer = setInterval(() => show(current + 1), 9000);
     };
 
     dots.forEach((d, n) => d.addEventListener('click', () => { show(n); schedule(); }));
