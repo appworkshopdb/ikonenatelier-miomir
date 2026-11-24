@@ -38,7 +38,7 @@
     <div class="wrap">
       <span class="eyebrow">Galerie</span>
       <h1>Ikonen aus Miomirs Werkstatt</h1>
-      <p class="lead">40 handgemalte Ikonen – nach Kategorien geordnet. Klicken Sie auf ein Bild, um es größer zu sehen.</p>
+      <p class="lead">34 handgemalte Ikonen – nach Kategorien geordnet. Klicken Sie auf ein Bild, um es größer zu sehen.</p>
     </div>
   </section>
 
@@ -125,24 +125,6 @@
           <figcaption><b>Hl. Georg mit dem Drachen</b><span>Kleinikone</span></figcaption></figure>
       </div>
 
-      <div class="more-works">
-        <h3>Weitere Ikonen aus der Werkstatt</h3>
-        <p class="more-note">Weitere Namenspatrone und Festtagsikonen aus Miomirs Werkstatt.</p>
-        <div class="tiles">
-          <figure class="work tile" data-cat="feste"><button type="button"><img src="bilder/klein/heilige-dreifaltigkeit.jpg" alt="Ikone der Heiligen Dreifaltigkeit mit drei Engeln am Tisch" width="206" height="206" loading="lazy"></button>
-            <figcaption><b>Heilige Dreifaltigkeit</b><span>die drei Engel bei Abraham</span></figcaption></figure>
-          <figure class="work tile" data-cat="heilige"><button type="button"><img src="bilder/klein/hl-nikolaus-von-myra.jpg" alt="Ikone des heiligen Nikolaus von Myra im roten Gewand" width="206" height="206" loading="lazy"></button>
-            <figcaption><b>Hl. Nikolaus von Myra</b></figcaption></figure>
-          <figure class="work tile" data-cat="heilige"><button type="button"><img src="bilder/klein/hl-evangelist-lukas.jpg" alt="Ikone des heiligen Evangelisten Lukas mit Buch" width="206" height="206" loading="lazy"></button>
-            <figcaption><b>Hl. Evangelist Lukas</b></figcaption></figure>
-          <figure class="work tile" data-cat="heilige"><button type="button"><img src="bilder/klein/hl-joseph.jpg" alt="Ikone des heiligen Joseph mit dem Christuskind" width="206" height="206" loading="lazy"></button>
-            <figcaption><b>Hl. Joseph</b><span>mit dem Christuskind</span></figcaption></figure>
-          <figure class="work tile" data-cat="heilige"><button type="button"><img src="bilder/klein/hl-florian.jpg" alt="Ikone des heiligen Florian als Soldat, der ein brennendes Haus löscht" width="206" height="206" loading="lazy"></button>
-            <figcaption><b>Hl. Florian</b><span>Schutzpatron gegen Feuer</span></figcaption></figure>
-          <figure class="work tile" data-cat="heilige"><button type="button"><img src="bilder/klein/hl-georg-rot-2.jpg" alt="Ikone des heiligen Georg auf rotem Grund" width="206" height="206" loading="lazy"></button>
-            <figcaption><b>Hl. Georg</b><span>auf rotem Grund</span></figcaption></figure>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -211,12 +193,7 @@
     const f = btn.dataset.filter;
     filterBtns.forEach(b => b.setAttribute('aria-pressed', b === btn));
     works.forEach(w => w.classList.toggle('hidden', f !== 'alle' && !w.dataset.cat.split(' ').includes(f)));
-    // Leere Galerie-Bereiche ausblenden, damit keine Lücke bleibt
-    const main = document.querySelector('.gallery'), more = document.querySelector('.more-works');
-    const any = el => [...el.querySelectorAll('.work')].some(w => !w.classList.contains('hidden'));
-    main.hidden = !any(main);
-    more.hidden = !any(more);
-    more.classList.toggle('alone', main.hidden);
+
   }));
 
   // Lightbox
